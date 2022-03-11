@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Cozynest</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+        <title>Cozynest</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-  <body>
-    <%= yield %>
-  </body>
+    <body>
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= select_alert_subclass(key) %> alert-dismissable fade show" role="alert">
+                <%= value %>
+                <button type="button" class="close" data-dismiss="alert" aira-label="close"><span aria-hidden="true">&times;</span></button>
+            </div>
+        <% end %>
+        <%# NAVBAR %>
+        <%= yield %>
+    </body>
 </html>
