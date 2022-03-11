@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_11_055125) do
+ActiveRecord::Schema.define(version: 2022_03_11_062137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,17 @@ ActiveRecord::Schema.define(version: 2022_03_11_055125) do
     t.index ["shelter_id"], name: "index_pets_on_shelter_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "reviewable_type", null: false
+    t.bigint "reviewable_id", null: false
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "reviewer_id", null: false
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable"
+    t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -82,4 +93,5 @@ ActiveRecord::Schema.define(version: 2022_03_11_055125) do
   add_foreign_key "pets", "pet_categories", column: "category_id"
   add_foreign_key "pets", "users", column: "guardian_id"
   add_foreign_key "pets", "users", column: "shelter_id"
+  add_foreign_key "reviews", "users", column: "reviewer_id"
 end
