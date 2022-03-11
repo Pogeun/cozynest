@@ -1,0 +1,16 @@
+<%= form_with method: :post do |form| %>
+    <%= form.button "$5.00", "data-stripe": "donation-500" %>
+<% end %>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    document
+        .querySelector("[data-stripe='donation-500']")
+        .addEventListener("click", () => {
+            const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+            console.log(stripe);
+            stripe.redirectToCheckout({
+                sessionId: "<%= @donation_sessions[500].id %>"
+            });
+        });
+</script>
