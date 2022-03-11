@@ -4,6 +4,7 @@
         <% @pets.each do |pet| %>
             <div class="col mb-4">
                 <div class="card border-dark h-100">
+                    <%= image_tag pet.picture, class: "thumbnail card-img top", alt: pet.name %>
                     <div class="card-body">
                         <h5><%= pet.name %></h5>
                         <p class="card-text text-secondary"><%= pet.description %></p>
