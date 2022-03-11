@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
     has_many :pet
 
+    validates :username, uniqueness: { case_sensitive: false }, presence: true, allow_blank: false, format: { with: /\A[a-zA-Z0-9]+\z/ }
+
     def shelter?
         type == 'Shelter'
     end
