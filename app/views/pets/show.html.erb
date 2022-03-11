@@ -25,7 +25,7 @@
                     <% end %>
                 <% elsif current_user.guardian? %>
                     <% if not @pet.guardian %>
-                        <%= link_to "Request foster", '#' %>
+                        <%= link_to "Request foster", foster_request_path(@pet.id) %>
                     <% end %>
                 <% end %>
             <% end %>

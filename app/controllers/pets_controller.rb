@@ -1,7 +1,7 @@
 class PetsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
-    before_action :get_pet, only: [:show, :edit, :update, :destroy]
-    before_action :authorize_user, only: [:new, :create, :edit, :update, :destroy]
+    before_action :get_pet, only: [:show, :edit, :update, :destroy, :foster_request]
+    before_action :authorize_user, only: [:new, :create, :edit, :update, :destroy, :foster_request]
     before_action :get_categories, only: [:new, :edit]
 
     def index
@@ -46,6 +46,14 @@ class PetsController < ApplicationController
         redirect_to pets_path, notice: "Successfully deleted!"
     end
 
+    def foster_request
+        puts "TESTING >>>>>>>>>> #{params[:action]}"
+    end
+
+    def submit_foster_request
+        puts "TESTING >>>>>>>>>> #{params[:action]}"
+    end
+
     private
         def get_categories
             @categories = PetCategory.all
@@ -57,16 +65,33 @@ class PetsController < ApplicationController
 
         def authorize_user
             if current_user.shelter?
-                action = params[:action]
-                if action == "new" || action == "create"
+                authorize_shelter
+            else
+                authorize_guardian
+            end
+        end
 
-                elsif action == "edit" || action == "update" || action == "destroy"
-                    if @pet.shelter.id != current_user.id
-                        flash[:alert] = "#{@pet.name} does not belong to your shelter!"
+        def authorize_shelter
+            action = params[:action]
+            if action == "new" || action == "create"
 
-                        redirect_to pets_path
-                    end
+            elsif action == "edit" || action == "update" || action == "destroy"
+                if @pet.shelter.id != current_user.id
+                    flash[:alert] = "#{@pet.name} does not belong to your shelter!"
+
+                    redirect_to pets_path
                 end
+            else
+                flash[:alert] = "Only guardians can access this page!"
+
+                redirect_to pets_path
+            end
+        end
+
+        def authorize_guardian
+            action = params[:action]
+            if action == "foster_request"
+
             else
                 flash[:alert] = "Only shelter representatives can access this page!"
 
