@@ -1,0 +1,24 @@
+<section class="container d-flex flex-column flex-md-row px-2 my-2 my-md-5">
+    <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
+        <h1 class="mb-sm-2 mb-md-5">
+            <%= @pet.name %>
+        </h1>
+        <p>
+            <%= @pet.category.name %>
+        </p>
+        <p>
+            <%= @pet.description %>
+        </p>
+        <div class="container">
+            <% if current_user && current_user.id == @pet.shelter_id %>
+                <div class="d-flex justify-content-equally">
+                    <%= link_to "Edit", edit_pet_path(@pet.id), class: "btn btn-warning mr-2" %>
+                    <%= link_to "Delete", @pet, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+                </div>          
+            <% end %>
+        </div>
+        <div>
+            <%= link_to "Back", pets_path %>
+        </div>
+    </div>
+</section>
