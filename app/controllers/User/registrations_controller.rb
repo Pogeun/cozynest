@@ -3,13 +3,9 @@
 class User::RegistrationsController < Devise::RegistrationsController
     before_action :configure_permitted_parameters
 
-    def create
-        super
-    end
-
     protected
         def configure_permitted_parameters
-            devise_parameter_sanitizer.permit(:sign_up, keys: [:type])
+            devise_parameter_sanitizer.permit(:sign_up, keys: [:type, :username])
             devise_parameter_sanitizer.permit(:account_update, keys: [:username])
         end
 
