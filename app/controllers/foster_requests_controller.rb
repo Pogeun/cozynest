@@ -1,8 +1,11 @@
 class FosterRequestsController < ApplicationController
     before_action :authenticate_user!
-    before_action :authorize_user, only: [:new, :create, :show, :review]
-    before_action :get_pet, only: [:new, :create]
-    before_action :get_foster_requests, only: [:review]
+    before_action :authorize_user, only: [:new, :create, :show, :approve, :show_per_pet]
+    before_action :get_foster_request, only: [:show, :approve]
+    before_action :get_pet, only: [:new, :create, :show_per_pet]
+
+    def index
+    end
 
     def new
         @foster_request = FosterRequest.new
@@ -32,27 +35,45 @@ class FosterRequestsController < ApplicationController
     end
 
     def show
-        @foster_request = FosterRequest.find(params[:id])
-        if @foster_request.guardian_id != current_user.id && @foster_request.pet.shelter_id != current_user.id
-            flash[:alert] = "You do not have a permission to see this foster request!"
-            
+    end
+
+    def approve
+        foster_requests = FosterRequest.where(pet: @foster_request.pet)
+
+        foster_requests.each_with_index do |foster_request, index|
+            if @foster_request == foster_request
+                foster_request.approved!
+            else
+                foster_request.declined!
+            end
+
+            if index == foster_requests.count - 1
+                redirect_to show_foster_request_path(params[:id]), notice: "You have successsfully selected guardian for #{@foster_request.pet.name}!"
+
+                return
+            end
+        end
+    end
+
+    def show_per_pet
+        if @pet.shelter.id != current_user.id
+            flash[:alert] = "#{@pet.name} does not belong to your shelter!"
+
             redirect_to pets_path
 
             return
         end
-    end
 
-    def review
-        
+        @foster_requests = @pet.foster_requests.all
     end
 
     private
-        def get_pet
-            @pet = Pet.find(params[:id])
+        def get_foster_request
+            @foster_request = FosterRequest.find(params[:id])
         end
 
-        def get_foster_requests
-            @foster_requests = FosterRequest.find(params[:id])
+        def get_pet
+            @pet = Pet.find(params[:id])
         end
 
         def authorize_user
@@ -78,7 +99,7 @@ class FosterRequestsController < ApplicationController
 
         def authorize_guardian
             action = params[:action]
-            if action == "review"
+            if action == "approve" || action == "show_per_pet"
                 flash[:alert] = "Only shelter representatives can access this page!"
 
                 redirect_to foster_requests_path
@@ -87,8 +108,6 @@ class FosterRequestsController < ApplicationController
             else
                 
             end
-
-            
         end
 
         def permit_params

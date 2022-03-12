@@ -6,8 +6,6 @@
     <div class="field">
         <%= form.button "Submit Foster Request" %>
     </div>
-
-    <div class="field">
-        <%= link_to "Back", pet_path(@pet.id) %>
-    </div>
 <% end %>
+
+<%= link_to "Back", @pet %>

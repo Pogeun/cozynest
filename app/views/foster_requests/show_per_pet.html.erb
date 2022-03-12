@@ -1,0 +1,13 @@
+<% @foster_requests.each do |foster_request| %>
+    <div>
+        <%= foster_request.guardian.username %>
+    </div>
+    <div>
+        <%= format_time(foster_request.created_at) %>
+    </div>
+    <div>
+        <%= link_to "Show Details", show_foster_request_path(foster_request.id), class: "btn btn-outline-primary" %>
+    </div>
+<% end %>
+
+<%= link_to "Back", @pet %>

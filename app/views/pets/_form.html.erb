@@ -26,3 +26,11 @@
         <%= form.submit %>
     </div>
 <% end %>
+
+<div>
+    <% if current_page?(:controller => 'pets', :action => 'new') %>
+        <%= link_to "Back", root_url %>
+    <% elsif current_page?(:controller => 'pets', :action => 'edit') %>
+        <%= link_to "Back", pet_path(@pet.id) %>
+    <% end %>
+</div>

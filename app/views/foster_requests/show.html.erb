@@ -1,1 +1,15 @@
-<%= @foster_request %>
+<% if current_user.shelter? %>
+    <%= form_with url: approve_foster_request_path, method: :patch do |form| %>
+        <div class="field">
+            <%= form.label :pet_name, "Pet name: #{@foster_request.pet.name}" %>
+        </div>
+
+        <div class="field">
+            <%= form.button "Accept Foster Request" %>
+        </div>
+    <% end %>
+<% else %>
+  
+<% end %>
+
+<%= link_to "Back", foster_requests_per_pet_path(@foster_request.pet_id) %>
