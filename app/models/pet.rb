@@ -4,7 +4,7 @@ class Pet < ApplicationRecord
     belongs_to :shelter, class_name: 'User'
     belongs_to :guardian, class_name: 'User', optional: true
 
-    has_many :foster_requests
+    has_many :foster_requests, dependent: :destroy
 
     has_many :reviews, as: :reviewable
 
