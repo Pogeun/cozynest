@@ -1,0 +1,13 @@
+<%= form_with url: new_foster_request_path, method: :post do |form| %>
+    <div class="field">
+        <%= form.label :pet_name, "Pet name: #{@pet.name}" %>
+    </div>
+
+    <div class="field">
+        <%= form.button "Submit Foster Request" %>
+    </div>
+
+    <div class="field">
+        <%= link_to "Back", pet_path(@pet.id) %>
+    </div>
+<% end %>

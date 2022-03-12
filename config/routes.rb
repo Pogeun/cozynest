@@ -3,19 +3,21 @@ Rails.application.routes.draw do
 
     root to: 'pages#index'
 
-    # Pages controller
+    # Pages
     get '/mypage', to: 'pages#mypage', as: 'mypage'
     get '/donation', to: 'pages#donation', as: 'donation'
     post '/donation', to: 'pages#donation'
 
-    # Pets controller
+    # Pets
     get '/pets', to: 'pets#index', as: 'pets'
     get '/pets/new', to: 'pets#new', as: 'new_pet'
-    post '/pets/', to: 'pets#create', as: 'create_pet'
+    post '/pets', to: 'pets#create'
     get '/pets/:id', to: 'pets#show', as: 'pet'
     put '/pets/:id', to: 'pets#update'
     patch '/pets/:id', to: 'pets#update'
     delete '/pets/:id', to: 'pets#destroy', as: 'delete_pet'
     get '/pets/:id/edit', to: 'pets#edit', as: 'edit_pet'
-    get '/pets/:id/foster_request', to: 'pets#foster_request', as: 'foster_request'
+    get '/pets/:id/new_foster_request', to: 'pets#new_foster_request', as: 'new_foster_request'
+    post '/pets/:id/new_foster_request', to: 'pets#create_foster_request'
+    get '/pets/:id/review_foster_requests', to: 'pets#review_foster_requests', as: 'review_foster_requests'
 end
