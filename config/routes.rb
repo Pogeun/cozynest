@@ -17,7 +17,11 @@ Rails.application.routes.draw do
     patch '/pets/:id', to: 'pets#update'
     delete '/pets/:id', to: 'pets#destroy', as: 'delete_pet'
     get '/pets/:id/edit', to: 'pets#edit', as: 'edit_pet'
-    get '/pets/:id/new_foster_request', to: 'pets#new_foster_request', as: 'new_foster_request'
-    post '/pets/:id/new_foster_request', to: 'pets#create_foster_request'
-    get '/pets/:id/review_foster_requests', to: 'pets#review_foster_requests', as: 'review_foster_requests'
+    
+    # Foster Requests
+    get '/pets/:id', to: 'pets#show', as: 'foster_requests'
+    get '/pets/:id/new_foster_request', to: 'foster_requests#new', as: 'new_foster_request'
+    post '/pets/:id/new_foster_request', to: 'foster_requests#create'
+    get '/foster_requests/:id/show', to: 'foster_requests#show', as: 'show_foster_reqeust'
+    get '/pets/:id/review_foster_requests', to: 'foster_requests#review', as: 'review_foster_requests'
 end
