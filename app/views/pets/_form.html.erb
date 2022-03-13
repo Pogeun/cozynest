@@ -1,23 +1,39 @@
 <%= form_with model: @pet, local: true do |form| %>
-    <div class="field">
+    <% if @pet.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:
+            </h2>
+
+            <ul>
+                <% @pet.errors.each do |error| %>
+                    <li>
+                        <%= error.full_message %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div>
         <%= form.label :name %>
         <br />
         <%= form.text_field :name %>
     </div>
 
-    <div class="field">
+    <div>
         <%= form.label :category_id %>
         <br />
         <%= form.select :category_id, @categories.map {|category| [format_category(category.name), category.id]} %>
     </div>
 
-    <div class="field">
+    <div>
         <%= form.label :description %>
         <br />
         <%= form.text_area :description %>
     </div>
 
-    <div class="field">
+    <div>
         <%= form.label :picture %>
         <br />
         <%= form.file_field :picture, accept: "image/png, image/jpg, image/jpeg" %>
@@ -25,7 +41,7 @@
 
     <br />
 
-    <div class="field">
+    <div>
         <%= form.submit %>
     </div>
 <% end %>

@@ -1,14 +1,14 @@
 <%= form_with url: new_foster_request_path, method: :post do |form| %>
-    <div class="field">
+    <div>
         <%= form.label :pet_name, "Pet name: #{@pet.name}" %>
     </div>
 
-    <div class="field">
+    <div>
         <%= form.label :comment %>
         <%= form.text_area :comment %>
     </div>
 
-    <div class="field">
+    <div>
         <%= form.button "Submit", data: {confirm: "Are you sure?"} %>
     </div>
 <% end %>

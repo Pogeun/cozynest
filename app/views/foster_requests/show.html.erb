@@ -1,17 +1,17 @@
 <% if current_user.shelter? %>
     <%= form_with url: approve_foster_request_path, method: :patch do |form| %>
-        <div class="field">
+        <div>
             <%= form.label :pet_name, "Pet name: #{@foster_request.pet.name}" %>
         </div>
 
-        <div class="field">
+        <div>
             <%= form.label :comment %>
             <br />
             <%= @foster_request.comment %>
         </div>
 
         <% if not @foster_request.pet.guardian %>
-            <div class="field">
+            <div>
                 <%= form.button "Accept Foster Request" %>
             </div>
         <% end %>

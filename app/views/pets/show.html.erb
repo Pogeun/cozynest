@@ -1,10 +1,10 @@
-<section class="container d-flex flex-column flex-md-row px-2 my-2 my-md-5">
-    <div class="content col-12 col-md-7 col-lg-8 p-0 pr-md-3">
-        <div class="col-12 p-0 main-preview mb-4">
-            <%= image_tag @pet.picture.attached? ? @pet.picture : 'cozynest_image_default.png', class: "thumbnail card-img top", alt: @pet.name %>
+<section>
+    <div>
+        <div>
+            <%= image_tag @pet.picture.attached? ? @pet.picture : 'cozynest_image_default.png', style: "width: 400px;", alt: @pet.name %>
         </div>
     </div>
-    <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
+    <div>
         <h1>
             <%= @pet.name %>
         </h1>
@@ -48,4 +48,15 @@
             <%= link_to 'Back', pets_path %>
         </div>
     </div>
+</section>
+<section>
+    Reviews:
+    <% @pet.reviews.each do |review| %>
+        <div>
+            <%= "#{review.reviewer.username} (#{format_time(review.created_at, timezone = 'Melbourne', timeformat = "%d-%m-%Y")})" %>
+        </div>
+        <div>
+            <%= review.comment %>
+        </div>
+    <% end %>
 </section>

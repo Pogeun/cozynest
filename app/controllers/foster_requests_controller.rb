@@ -21,7 +21,8 @@ class FosterRequestsController < ApplicationController
             return
         end
         
-        if FosterRequest.where(pet: pet, guardian: current_user).last.reviewed?
+        foster_request = FosterRequest.where(pet: pet, guardian: current_user).last
+        if foster_request && foster_request.reviewed?
             flash[:alert] = "You have already subbmitted a foster request for #{@pet.name}!"
 
             redirect_to pet_path(params[:id])
