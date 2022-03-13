@@ -1,10 +1,9 @@
 <%= form_with model: @pet, local: true do |form| %>
     <% if @pet.errors.any? %>
-        <div id="error_explanation">
+        <div>
             <h2>
                 <%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:
             </h2>
-
             <ul>
                 <% @pet.errors.each do |error| %>
                     <li>
@@ -14,38 +13,31 @@
             </ul>
         </div>
     <% end %>
-
     <div>
         <%= form.label :name %>
         <br />
         <%= form.text_field :name %>
     </div>
-
     <div>
         <%= form.label :category_id %>
         <br />
         <%= form.select :category_id, @categories.map {|category| [format_category(category.name), category.id]} %>
     </div>
-
     <div>
         <%= form.label :description %>
         <br />
         <%= form.text_area :description %>
     </div>
-
     <div>
         <%= form.label :picture %>
         <br />
         <%= form.file_field :picture, accept: "image/png, image/jpg, image/jpeg" %>
     </div>
-
     <br />
-
     <div>
         <%= form.submit %>
     </div>
 <% end %>
-
 <% if current_page?(:controller => 'pets', :action => 'new') %>
     <div>
         <%= link_to "Back", root_url %>

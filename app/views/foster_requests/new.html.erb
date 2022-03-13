@@ -2,15 +2,12 @@
     <div>
         <%= form.label :pet_name, "Pet name: #{@pet.name}" %>
     </div>
-
     <div>
         <%= form.label :comment %>
         <%= form.text_area :comment %>
     </div>
-
     <div>
         <%= form.button "Submit", data: {confirm: "Are you sure?"} %>
     </div>
 <% end %>
-
 <%= link_to "Back", @pet %>

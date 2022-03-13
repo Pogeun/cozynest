@@ -3,13 +3,11 @@
         <div>
             <%= form.label :pet_name, "Pet name: #{@foster_request.pet.name}" %>
         </div>
-
         <div>
             <%= form.label :comment %>
             <br />
             <%= @foster_request.comment %>
         </div>
-
         <% if not @foster_request.pet.guardian %>
             <div>
                 <%= form.button "Accept Foster Request" %>
@@ -17,7 +15,5 @@
         <% end %>
     <% end %>
 <% else %>
-  
 <% end %>
-
 <%= link_to "Back", foster_requests_per_pet_path(@foster_request.pet_id) %>
