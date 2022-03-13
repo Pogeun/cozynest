@@ -2,7 +2,7 @@ class FosterRequestsController < ApplicationController
     before_action :authenticate_user!
     before_action :authorize_user, only: [:new, :create, :show, :approve, :show_per_pet]
     before_action :get_foster_request, only: [:show, :approve]
-    before_action :get_pet, only: [:new, :create, :show_per_pet]
+    before_action :get_pet, only: [:new, :create, :end_fostering, :terminate, :show_per_pet]
 
     def index
     end
@@ -12,7 +12,16 @@ class FosterRequestsController < ApplicationController
     end
 
     def create
-        if FosterRequest.where(pet: Pet.find(params[:id]), guardian: current_user).first
+        pet = Pet.find(params[:id])
+        if pet.guardian && pet.guardian != current_user
+            flash[:alert] = "#{@pet.name} is already fostered!"
+
+            redirect_to pet_path(params[:id])
+
+            return
+        end
+        
+        if FosterRequest.where(pet: pet, guardian: current_user).last.reviewed?
             flash[:alert] = "You have already subbmitted a foster request for #{@pet.name}!"
 
             redirect_to pet_path(params[:id])
@@ -20,7 +29,7 @@ class FosterRequestsController < ApplicationController
             return
         end
 
-        @foster_request = FosterRequest.new(pet: Pet.find(params[:id]), guardian: current_user, comment: params[:comment])
+        @foster_request = FosterRequest.new(pet: pet, guardian: current_user, comment: params[:comment])
         if @foster_request.save
             redirect_to pet_path(params[:id]), notice: "You have successsfully submitted a foster request!"
 
@@ -38,20 +47,47 @@ class FosterRequestsController < ApplicationController
     end
 
     def approve
-        foster_requests = FosterRequest.where(pet: @foster_request.pet)
+        foster_requests = FosterRequest.where(pet: @foster_request.pet, status: :reviewed)
 
         foster_requests.each_with_index do |foster_request, index|
             if @foster_request == foster_request
                 foster_request.approved!
+
+                foster_request.pet.update(guardian: foster_request.guardian)
+                foster_request.pet.save
             else
                 foster_request.declined!
             end
 
-            if index == foster_requests.count - 1
-                redirect_to show_foster_request_path(params[:id]), notice: "You have successsfully selected guardian for #{@foster_request.pet.name}!"
+            if foster_requests[index] == foster_requests.last
+                redirect_to pet_path(foster_request.pet.id), notice: "You have successsfully selected guardian for #{@foster_request.pet.name}!"
 
                 return
             end
+        end
+    end
+
+    def end_fostering
+    end
+
+    def terminate
+        foster_request = FosterRequest.where(pet: @pet, guardian: current_user).last
+        
+        @pet.reviews.create(reviewer: current_user, comment: params[:comment])
+        
+        foster_request.terminated!
+        foster_request.pet.guardian = nil
+
+        if foster_request.pet.save
+            redirect_to @pet, notice: "Thank you for taking a good care of #{@pet.name}!"
+
+            return
+        else
+            flash[:alert] = "Something went wrong!"
+
+            redirect_to @pet
+
+            return
         end
     end
 
@@ -64,7 +100,7 @@ class FosterRequestsController < ApplicationController
             return
         end
 
-        @foster_requests = @pet.foster_requests.all
+        @foster_requests = @pet.foster_requests.where(status: :reviewed).all
     end
 
     private

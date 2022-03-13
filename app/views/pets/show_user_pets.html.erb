@@ -1,10 +1,10 @@
 <h1 class="hero-title text-center"><%= current_user.username%>'s Pet List</h1>
 <section class="container">
     <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-4">
-        <% @pets.each do |pet| %>
+        <% current_user.pets.each do |pet| %>
             <div class="col mb-4">
                 <div class="card border-dark h-100">
-                    <%= image_tag pet.picture, class: "thumbnail card-img top", alt: pet.name %>
+                    <%= image_tag pet.picture.attached? ? pet.picture : 'cozynest_image_default.png', class: "thumbnail card-img top", alt: pet.name %>
                     <div class="card-body">
                         <h5><%= pet.name %></h5>
                         <p class="card-text text-secondary"><%= pet.description %></p>

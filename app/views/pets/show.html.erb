@@ -1,7 +1,7 @@
 <section class="container d-flex flex-column flex-md-row px-2 my-2 my-md-5">
     <div class="content col-12 col-md-7 col-lg-8 p-0 pr-md-3">
         <div class="col-12 p-0 main-preview mb-4">
-            <%= image_tag @pet.picture, class: "thumbnail card-img top", alt: @pet.name %>
+            <%= image_tag @pet.picture.attached? ? @pet.picture : 'cozynest_image_default.png', class: "thumbnail card-img top", alt: @pet.name %>
         </div>
     </div>
     <div class="sidebar col-lg-4 p-0 mx-2 d-md-block">
@@ -9,7 +9,7 @@
             <%= @pet.name %>
         </h1>
         <p>
-            <%= @pet.category.name %>
+            <%= format_category(@pet.category.name) %>
         </p>
         <p>
             <%= @pet.description %>
@@ -17,9 +17,15 @@
         <% if current_user %>
             <% if current_user.shelter? &&  %>
                 <% if current_user.id == @pet.shelter_id %>
-                    <div>
-                        <%= link_to "Review Foster Request", foster_requests_per_pet_path(@pet.id) %>
-                    </div>
+                    <% if @pet.guardian %>
+                        <div>
+                            Current fosterer: <%= @pet.guardian.username %>
+                        </div>
+                    <% else %>
+                        <div>
+                            <%= link_to "Review Foster Request", foster_requests_per_pet_path(@pet.id) %>
+                        </div>
+                    <% end %>
                     <div>
                         <%= link_to "Edit", edit_pet_path(@pet.id) %>
                         |
@@ -30,6 +36,10 @@
                 <% if not @pet.guardian %>
                     <div>
                         <%= link_to "Foster", new_foster_request_path(@pet.id) %>
+                    </div>
+                <% elsif current_user == @pet.guardian %>
+                    <div>
+                        <%= link_to "End Fostering", end_foster_request_path(@pet.id) %>
                     </div>
                 <% end %>
             <% end %>

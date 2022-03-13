@@ -5,8 +5,16 @@
         </div>
 
         <div class="field">
-            <%= form.button "Accept Foster Request" %>
+            <%= form.label :comment %>
+            <br />
+            <%= @foster_request.comment %>
         </div>
+
+        <% if not @foster_request.pet.guardian %>
+            <div class="field">
+                <%= form.button "Accept Foster Request" %>
+            </div>
+        <% end %>
     <% end %>
 <% else %>
   

@@ -1,11 +1,11 @@
 class PetsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
-    before_action :get_pets, only: [:index, :show_user_pets]
     before_action :get_pet, only: [:show, :edit, :update, :destroy]
     before_action :authorize_user, only: [:new, :create, :edit, :update, :destroy]
     before_action :get_categories, only: [:new, :edit]
 
     def index
+        @pets = Pet.all
     end
 
     def show
@@ -38,7 +38,7 @@ class PetsController < ApplicationController
         else
             get_categories
             
-            render "new", notice: "Something went wrong!"
+            render "edit", notice: "Something went wrong!"
 
             return
         end
@@ -58,10 +58,6 @@ class PetsController < ApplicationController
     private
         def get_categories
             @categories = PetCategory.all
-        end
-
-        def get_pets
-            @pets = params[:action] == "index" ? Pet.all : current_user.pets
         end
 
         def get_pet

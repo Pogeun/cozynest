@@ -19,18 +19,23 @@
 
     <div class="field">
         <%= form.label :picture %>
+        <br />
         <%= form.file_field :picture, accept: "image/png, image/jpg, image/jpeg" %>
     </div>
+
+    <br />
 
     <div class="field">
         <%= form.submit %>
     </div>
 <% end %>
 
-<div>
-    <% if current_page?(:controller => 'pets', :action => 'new') %>
+<% if current_page?(:controller => 'pets', :action => 'new') %>
+    <div>
         <%= link_to "Back", root_url %>
-    <% elsif current_page?(:controller => 'pets', :action => 'edit') %>
+    </div>
+<% elsif current_page?(:controller => 'pets', :action => 'edit') %>
+    <div>
         <%= link_to "Back", pet_path(@pet.id) %>
-    <% end %>
-</div>
+    </div>
+<% end %>
