@@ -10,7 +10,7 @@
         <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     </head>
 
-    <body class="d-flex flex-column min-vh-100">
+    <body class="bottom-footer">
         <% flash.each do |key, value| %>
             <div class="alert alert-<%= select_alert_subclass(key) %> alert-dismissable fade show" role="alert">
                 <%= value %>
