@@ -1,12 +1,25 @@
-<footer>
-    <div>
-        About
+<footer class="page-footer font-small">
+    <div class="container">
+        <div class="row text-center d-flex justify-content-center align-contents-center pt-5 mb-3">
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <%= link_to "Home", root_url, class: "color-white" %>
+                </h6>
+            </div>
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <%= link_to "About", about_path, class: "color-white" %>
+                </h6>
+            </div>
+            <div class="col-md-2 mb-3">
+                <h6 class="text-uppercase font-weight-bold">
+                    <%= link_to "Contact", contact_path, class: "color-white" %>
+                </h6>
+            </div>
+        </div>
     </div>
-    <div>
-        Contact
-    </div>
-    <div>
-        © 2022 Copyright:
-        <a href="https://cozynest.herokuapp.com/">cozynest.herokuapp.com</a>
+    <hr class="rgba-white-light" style="margin: 0 15%;">
+    <div class="footer-copyright text-center py-3 color-grey">
+        Copyright&#169; <%= Time.new.year %>. <%= link_to "Cozynest", "https://cozynest.herokuapp.com/", class: "color-white" %>. All rights reserved.
     </div>
 </footer>

@@ -1,34 +1,36 @@
-<nav>
-    <div>
-        <a href="/">Cozynest</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+    <div class="col-4 align-items-center">
+        <%= link_to "Cozynest", root_url, class: "navbar-brand disable-selection" %>
     </div>
-    <ul>
-        <li>
-            <%= link_to "Home", "/" %>
+    <ul class="navbar-nav col-4 d-flex justify-content-end">
+        <li class="nav-item">
+            <%= link_to "Home", root_url, class: "nav-link disable-selection" %>
         </li>
-        <li>
-            <%= link_to "Pets", pets_path %>
+        <li class="nav-item">
+            <%= link_to "Pets", pets_path, class: "nav-link disable-selection" %>
         </li>
-        <li>
-            <%= link_to "Donation", donation_path %>
+        <li class="nav-item">
+            <%= link_to "Donation", donation_path, class: "nav-link disable-selection" %>
         </li>
         <% if user_signed_in? %>
-            <div>
-                <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle disable-selection">
                     <%= current_user.username %>
                 </a>
-                <div aria-labelledby="dropdownMenuLink">
-                    <%= link_to "Edit account", edit_user_registration_path %>
-                    <%= link_to "Manage pets", user_pets_path %>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <%= link_to "Edit account", edit_user_registration_path, class: "dropdown-item disable-selection" %>
+                    <div class="dropdown-divider"></div>
+                    <%= link_to "Manage pets", user_pets_path, class: "dropdown-item disable-selection" %>
                     <% if current_user.shelter? %>
-                        <%= link_to "Register pet", new_pet_path %>
+                        <%= link_to "Register pet", new_pet_path, class: "dropdown-item disable-selection" %>
                     <% end %>
-                    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+                    <div class="dropdown-divider"></div>
+                    <%= link_to "Sign out", destroy_user_session_path, class: "dropdown-item disable-selection", method: :delete %>
                 </div>
-            </div>
+            </li>
         <% else %>
-            <%= link_to "Register", new_user_registration_path %>
-            <%= link_to "Sign in", new_user_session_path %>
+            <%= link_to "Register", new_user_registration_path, class: "nav-link disable-selection" %>
+            <%= link_to "Sign in", new_user_session_path, class: "nav-link disable-selection" %>
         <% end %>
     </ul>
 </nav>

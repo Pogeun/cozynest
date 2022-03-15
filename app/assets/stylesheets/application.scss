@@ -16,6 +16,27 @@
 
 @import "bootstrap/scss/bootstrap";
 
+.root-section {
+    margin: 5rem;
+    display: flex;
+    justify-content: space-evenly;
+
+    .index-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .index-div {
+        width: 50%;
+        margin: 2em;
+    }
+
+    .index-paragraph {
+        text-align: justify;
+    }
+}
+
+// to place the footer at the bottom of the page
 body {
     &.bottom-footer {
         display: flex;
@@ -23,8 +44,42 @@ body {
         min-height: 100vh;
     }
 
-    // to place the footer at the bottom of the page
-    footer {
+    >footer {
         margin-top: auto;
+        background-color: #343a40;
+
+        >hr {
+            border: 0;
+            border-top: 1px solid grey;
+        }
     }
+}
+
+// disable selection
+.disable-selection {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+    supported by Chrome, Edge, Opera and Firefox */
+}
+
+// mouseover dropdown menu
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+ }
+
+a:hover {
+    text-decoration: none;
+}
+
+.color-white {
+    color: white !important;
+}
+
+.color-grey {
+    color: grey !important;
 }
