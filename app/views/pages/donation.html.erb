@@ -1,9 +1,13 @@
-<%= form_with method: :post do |form| %>
-    <%= form.button "$5.00", "data-stripe": "donation-500" %>
-<% end %>
+<div>
+    <% [5, 10, 15, 20].each do |price| %>
+        <button name="button" type="submit" data-stripe="donation-<%= price %>00">$<%= price %>.00</button>
+    <% end %>
+</div>
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+    // tried to achieve this with for loop instead of the hard coding, 
+    // but for some reason it is only generating a $20.00 session for every buttons
     document
         .querySelector("[data-stripe='donation-500']")
         .addEventListener("click", () => {
@@ -11,6 +15,36 @@
             console.log(stripe);
             stripe.redirectToCheckout({
                 sessionId: "<%= @donation_sessions[500].id %>"
+            });
+        });
+
+    document
+        .querySelector("[data-stripe='donation-1000']")
+        .addEventListener("click", () => {
+            const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+            console.log(stripe);
+            stripe.redirectToCheckout({
+                sessionId: "<%= @donation_sessions[1000].id %>"
+            });
+        });
+
+    document
+        .querySelector("[data-stripe='donation-1500']")
+        .addEventListener("click", () => {
+            const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+            console.log(stripe);
+            stripe.redirectToCheckout({
+                sessionId: "<%= @donation_sessions[1500].id %>"
+            });
+        });
+
+    document
+        .querySelector("[data-stripe='donation-2000']")
+        .addEventListener("click", () => {
+            const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+            console.log(stripe);
+            stripe.redirectToCheckout({
+                sessionId: "<%= @donation_sessions[2000].id %>"
             });
         });
 </script>

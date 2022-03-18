@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
     # Pages
     get '/donation', to: 'pages#donation', as: 'donation'
-    post '/donation', to: 'pages#donation'
+    post '/webhook', to: 'pages#webhook'
     get '/about', to: 'pages#about', as: 'about'
     get '/contact', to: 'pages#contact', as: 'contact'
 

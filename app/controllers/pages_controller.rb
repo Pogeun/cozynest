@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+    skip_before_action :verify_authenticity_token, only: [:webhook]
+
     def index
     end
 
@@ -22,6 +24,10 @@ class PagesController < ApplicationController
     
             @donation_sessions[value] = donation_session
         end
+    end
+
+    def webhook
+        render plain: "Donation Success!"
     end
 
     private
