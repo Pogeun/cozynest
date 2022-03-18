@@ -21,23 +21,34 @@
     display: flex;
     justify-content: space-evenly;
 
-    .index-image {
+    .image {
         width: 100%;
         height: auto;
     }
 
-    .index-paragraph {
+    .paragraph {
         text-align: justify;
     }
 }
 
 .devise-section {
-    margin: 10rem 20rem;
-    padding: 1rem;
-    border: 1px solid grey;
-    border-radius: 5px;
+    margin: 10rem 50rem;
     display: flex;
     flex-direction: column;
+
+    .signup,
+    .signin,
+    .edit-account,
+    .forgot-password,
+    .edit-password {
+        width: 50%;
+
+        &.form {
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+        }
+    }
 }
 
 // to place the footer at the bottom of the page
@@ -65,6 +76,18 @@ body {
 
 .nopadding {
     padding: 0;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+.width-100p {
+    width: 100%;
+}
+
+.height-auto {
+    height: auto;
 }
 
 // disable selection

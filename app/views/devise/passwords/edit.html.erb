@@ -1,27 +1,31 @@
-<h2>Change your password</h2>
-
 <section class="devise-section">
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <%= f.hidden_field :reset_password_token %>
+    <h2 class="d-flex justify-content-center">Change your password</h2>
+    <div class="d-flex shadow bg-white rounded">
+        <div class="edit-password">
+            <%= image_tag "cozynest_devise.jpg", class: "width-100p height-auto" %>
+        </div>
+        <div class="edit-password form">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "width-100p" }) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                <%= f.hidden_field :reset_password_token %>
 
-        <div class="form-group">
-            <%= f.label :password, "New password" %><br />
-            <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+                <div class="form-group">
+                    <%= f.label :password, "New password" %><br />
+                    <% if @minimum_password_length %>
+                        <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+                    <% end %>
+                    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "Password", class: "form-control" %>
+                </div>
+
+                <div class="form-group">
+                    <%= f.label :password_confirmation, "Confirm new password" %><br />
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password", class: "form-control" %>
+                </div>
+
+                <div class="form-group">
+                    <%= f.submit "Change my password", class: "btn btn-primary width-100p" %>
+                </div>
             <% end %>
-            <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "Password", class: "form-control" %>
         </div>
-
-        <div class="form-group">
-            <%= f.label :password_confirmation, "Confirm new password" %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password", class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-            <%= f.submit "Change my password" %>
-        </div>
-    <% end %>
-
-    <%= render "devise/shared/links" %>
+    </div>
 </section>
