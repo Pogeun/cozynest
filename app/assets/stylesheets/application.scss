@@ -16,6 +16,10 @@
 
 @import "bootstrap/scss/bootstrap";
 
+body {
+    font-family: 'Roboto', sans-serif !important;
+}
+
 .index-section {
     margin: 5rem;
     display: flex;
@@ -49,6 +53,12 @@
             align-items: center;
         }
     }
+}
+
+.pet-section {
+    margin: 10rem 30rem;
+    display: flex;
+    flex-direction: column;
 }
 
 // to place the footer at the bottom of the page

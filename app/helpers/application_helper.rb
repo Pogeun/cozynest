@@ -12,7 +12,7 @@ module ApplicationHelper
         end
     end
 
-    def format_time(time, timezone = 'Melbourne', timeformat = "%I:%M:%S %p %d-%m-%Y")
+    def format_time(time, timeformat = "#{time.day.ordinalize} %b, %Y", timezone = 'Melbourne')
         return time.in_time_zone(timezone).strftime(timeformat)
     end
 end

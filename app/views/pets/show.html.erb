@@ -53,7 +53,7 @@
     Comments:
     <% @pet.reviews.each do |review| %>
         <div>
-            <%= "#{review.reviewer.username} (#{format_time(review.created_at, timezone = 'Melbourne', timeformat = "%d-%m-%Y")}):" %>
+            <%= "#{review.reviewer.username} (#{format_time(review.created_at)}):" %>
         </div>
         <div>
             <%= review.comment != "" ? review.comment : "None" %>
