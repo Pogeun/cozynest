@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     get '/donation', to: 'pages#donation', as: 'donation'
     post '/webhook', to: 'pages#webhook'
     get '/about', to: 'pages#about', as: 'about'
-    get '/contact', to: 'pages#contact', as: 'contact'
 
     # Pets
     get '/pets', to: 'pets#index', as: 'pets'
@@ -31,4 +30,8 @@ Rails.application.routes.draw do
     get '/foster_requests/:id', to: 'foster_requests#show', as: 'show_foster_request'
     put '/foster_requests/:id', to: 'foster_requests#approve'
     patch '/foster_requests/:id', to: 'foster_requests#approve', as: 'approve_foster_request'
+
+    # Contact
+    get '/contacts/new', to: 'contacts#new', as: 'new_contact'
+    post '/contacts', to: 'contacts#create'
 end

@@ -60,3 +60,5 @@ gem "devise", "~> 4.8"
 gem "stripe", "~> 5.45"
 
 gem "aws-sdk-s3", "~> 1.113"
+
+gem "mail_form", "~> 1.9"
