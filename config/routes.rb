@@ -32,6 +32,6 @@ Rails.application.routes.draw do
     patch '/foster_requests/:id', to: 'foster_requests#approve', as: 'approve_foster_request'
 
     # Contact
-    get '/contacts/new', to: 'contacts#new', as: 'new_contact'
-    post '/contacts/new', to: 'contacts#create'
+    get '/contacts', to: 'contacts#new', as: 'new_contact'
+    post '/contacts', to: 'contacts#create'
 end
