@@ -2,33 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.wrapper {
+.pets-section {
     margin: 10vh;
 
-    .card {
+    .pets-card {
         border: none;
         overflow: hidden;
         border-radius: 20px;
         min-height: 450px;
         box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
         
-        &.card-bg {
+        &.pets-card-bg {
             transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
             background-repeat: no-repeat;
             background-position: center center;
     
             &:hover {
                 transform: scale(0.98);
-                box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 0 5px -5px rgba(0, 0, 0, 1);
                 transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
             }
         }
     
-        .card-category {
+        .pets-card-category {
             color: khaki;
         }
     
-        .card-footer {
+        .pets-card-footer {
             background: none;
             border-top: none;
         }
@@ -40,6 +40,8 @@
         a {
             position: relative;
             display: inline-block;
+            color: white;
+            text-decoration: none;
 
             /* implementing the extending underline for anchor tag */
             &:after {
@@ -65,8 +67,4 @@
             }
         }
     }
-}
-
-.bg-cover {
-    background-size: cover;
 }

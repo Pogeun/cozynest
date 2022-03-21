@@ -21,44 +21,51 @@ body {
 }
 
 .index-section {
-    margin: 5rem;
-    display: flex;
-    justify-content: space-evenly;
+    padding: 10rem 0;
+}
 
-    .image {
-        width: 100%;
-        height: auto;
-    }
+.index-image {
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+}
 
-    .paragraph {
-        text-align: justify;
-    }
+.index-paragraph {
+    text-align: justify;
 }
 
 .devise-section {
-    margin: 10rem 50rem;
+    padding: 10rem 0;
+}
+
+.devise-form-container {
+    padding: 3rem;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+}
 
-    .signup,
-    .signin,
-    .edit-account,
-    .forgot-password,
-    .edit-password {
-        width: 50%;
+@media screen and (max-width: 767px) {
+    .devise-block {
+        flex-direction: column;
+    }
 
-        &.form {
-            padding: 3rem;
-            display: flex;
-            align-items: center;
-        }
+    .devise-image-container,
+    .devise-form-container {
+        width: 100% !important;
+    }
+
+    .devise-image-container {
+        height: 10rem;
+    }
+
+    .devise-image {
+        height: 100% !important;
+        object-fit: cover;
     }
 }
 
-.pet-section {
-    margin: 10rem 30rem;
-    display: flex;
-    flex-direction: column;
+.contact-section {
+    padding: 10rem 0;
 }
 
 // to place the footer at the bottom of the page
@@ -82,22 +89,6 @@ body {
 
 .m-6 {
     margin: $spacer * 4 !important;
-}
-
-.nopadding {
-    padding: 0;
-}
-
-.nomargin {
-    margin: 0;
-}
-
-.width-100p {
-    width: 100%;
-}
-
-.height-auto {
-    height: auto;
 }
 
 // disable selection
@@ -127,4 +118,8 @@ a:hover {
 
 .color-grey {
     color: grey !important;
+}
+
+.bg-cover {
+    background-size: cover !important;
 }

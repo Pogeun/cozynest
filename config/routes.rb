@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get '/pets', to: 'pets#index', as: 'pets'
     get '/pets/new', to: 'pets#new', as: 'new_pet'
     post '/pets', to: 'pets#create'
-    get '/pets/user_pets', to: 'pets#show_user_pets', as: 'user_pets'
+    get '/pets/user_pets', to: 'pets#index_user_pets', as: 'user_pets'
     get '/pets/:id', to: 'pets#show', as: 'pet'
     put '/pets/:id', to: 'pets#update'
     patch '/pets/:id', to: 'pets#update'

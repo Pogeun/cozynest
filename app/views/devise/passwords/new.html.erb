@@ -1,11 +1,11 @@
-<section class="devise-section">
+<section class="container devise-section">
     <h2 class="d-flex justify-content-center">Forgot your password?</h2>
-    <div class="d-flex shadow bg-white rounded">
-        <div class="forgot-password">
-            <%= image_tag "cozynest_image_default.jpg", class: "width-100p height-auto" %>
+    <div class="d-flex shadow bg-white rounded devise-block">
+        <div class="w-50 devise-image-container">
+            <%= image_tag "cozynest_image_default.jpg", class: "w-100 h-auto devise-image" %>
         </div>
-        <div class="forgot-password form">
-            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "width-100p" }) do |f| %>
+        <div class="w-50 devise-form-container">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "w-100" }) do |f| %>
                 <%= render "devise/shared/error_messages", resource: resource %>
 
                 <div class="form-group">
@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="form-group">
-                    <%= f.submit "Reset password", class: "btn btn-primary width-100p" %>
+                    <%= f.submit "Reset password", class: "btn btn-primary w-100" %>
                 </div>
             <% end %>
         </div>

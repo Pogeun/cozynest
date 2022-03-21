@@ -1,11 +1,11 @@
-<section class="devise-section">
+<section class="container devise-section">
     <h2 class="d-flex justify-content-center">Change your password</h2>
-    <div class="d-flex shadow bg-white rounded">
-        <div class="edit-password">
-            <%= image_tag "cozynest_image_default.jpg", class: "width-100p height-auto" %>
+    <div class="d-flex shadow bg-white rounded devise-block">
+        <div class="w-50 devise-image-container">
+            <%= image_tag "cozynest_image_default.jpg", class: "w-100 h-auto devise-image" %>
         </div>
-        <div class="edit-password form">
-            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "width-100p" }) do |f| %>
+        <div class="w-50 devise-form-container">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "w-100" }) do |f| %>
                 <%= render "devise/shared/error_messages", resource: resource %>
                 <%= f.hidden_field :reset_password_token %>
 
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="form-group">
-                    <%= f.submit "Change my password", class: "btn btn-primary width-100p" %>
+                    <%= f.submit "Change my password", class: "btn btn-primary w-100" %>
                 </div>
             <% end %>
         </div>

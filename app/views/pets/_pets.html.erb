@@ -2,10 +2,10 @@
     <div class="row">
         <% pets.each do |pet| %>
             <div class="col-md-4">
-                <div class="card text-white card-bg click-col bg-cover" style="background-image: url(<%= pet.picture.attached? ? pet.picture.url : image_url('cozynest_image_default.jpg') %>);">
+                <div class="card click-col bg-cover text-white pets-card pets-card-bg" style="background-image: url(<%= pet.picture.attached? ? pet.picture.url : image_url('cozynest_image_default.jpg') %>);">
                     <div class="card-img-overlay d-flex flex-column">
                         <div class="card-body">
-                            <small class="card-category mb-2">
+                            <small class="pets-card-category mb-2">
                                 <%= format_category(pet.category.name) %>
                             </small>
                             <h4 class="card-title mt-0">
@@ -15,7 +15,7 @@
                                 <%= format_time(pet.created_at) %>
                             </small>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer pets-card-footer">
                             <div class="media">
                                 <div class="media-body">
                                     <h6 class="my-0 text-white d-block">
