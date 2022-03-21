@@ -69,6 +69,14 @@ https://github.com/Pogeun/cozynest
 
 #### **Tech stack (e.g. html, css, deployment platform, etc)**
 
+gem
+Ruby on Rails
+Devise
+mail_form
+Stripe
+Bootstrap
+aws-sdk-s3
+
 ### **R12. User stories**
 
 ### **R13. Wireframe**
