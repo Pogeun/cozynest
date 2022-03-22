@@ -18,54 +18,8 @@
 
 body {
     font-family: 'Roboto', sans-serif !important;
-}
 
-.index-section {
-    padding: 10rem 0;
-}
-
-.index-image {
-    width: 100%;
-    height: auto;
-    padding: 2rem;
-}
-
-.index-paragraph {
-    text-align: justify;
-}
-
-.devise-section {
-    padding: 10rem 0;
-}
-
-.devise-form-container {
-    padding: 3rem;
-    display: flex;
-    align-items: center;
-}
-
-@media screen and (max-width: 767px) {
-    .devise-block {
-        flex-direction: column;
-    }
-
-    .devise-image-container,
-    .devise-form-container {
-        width: 100% !important;
-    }
-
-    .devise-image-container {
-        height: 10rem;
-    }
-
-    .devise-image {
-        height: 100% !important;
-        object-fit: cover;
-    }
-}
-
-// to place the footer at the bottom of the page
-body {
+    // to place the footer at the bottom of the page
     &.bottom-footer {
         display: flex;
         flex-direction: column;
@@ -83,39 +37,19 @@ body {
     }
 }
 
-.m-6 {
-    margin: $spacer * 4 !important;
-}
-
-// disable selection
-.disable-selection {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
-    supported by Chrome, Edge, Opera and Firefox */
-}
-
 // mouseover dropdown menu
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0; // remove the gap so it doesn't close
- }
+}
 
-a:hover {
+ 
+a {
+    color: white;
     text-decoration: none;
-}
 
-.color-white {
-    color: white !important;
-}
-
-.color-grey {
-    color: grey !important;
-}
-
-.bg-cover {
-    background-size: cover !important;
+    &:hover {
+        color: grey;
+        text-decoration: none;
+    }
 }

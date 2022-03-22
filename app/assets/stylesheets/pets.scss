@@ -2,6 +2,52 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.pet-manage-section,
+.pet-show-section {
+    margin: 10vh;
+
+    .pet-show-image {
+        height: 100% !important;
+    }
+
+    .pet-manage-form-container {
+        padding: 3rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .pet-show-details-container {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    @media screen and (max-width: 767px) {
+        .pet-manage-block,
+        .pet-show-block {
+            flex-direction: column;
+        }
+    
+        .pet-manage-image-container,
+        .pet-manage-form-container,
+        .pet-show-image-container,
+        .pet-show-details-container {
+            width: 100% !important;
+        }
+    
+        .pet-manage-image-container,
+        .pet-show-image-container {
+            height: 10rem;
+        }
+    
+        .pet-manage-image,
+        .pet-show-image {
+            height: 100% !important;
+            object-fit: cover;
+        }
+    }
+}
+
 .pets-section {
     margin: 10vh;
 
@@ -35,36 +81,6 @@
 
         &:hover {
             cursor: pointer;
-        }
-
-        a {
-            position: relative;
-            display: inline-block;
-            color: white;
-            text-decoration: none;
-
-            /* implementing the extending underline for anchor tag */
-            &:after {
-                content: "";
-                background: none repeat scroll 0 0 transparent;
-                bottom: 0;
-                width: 0;
-                height: 2px;
-                left: 50%;
-                background: white;
-                transition: width 0.3s ease 0s, left 0.3s ease 0s;
-                position: absolute;
-                display: block;
-            }
-
-            &:hover:after {
-                width: 100%;
-                left: 0;
-            }
-
-            &:visited {
-                color: white;
-            }
         }
     }
 }

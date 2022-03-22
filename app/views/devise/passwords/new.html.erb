@@ -9,7 +9,8 @@
                 <%= render "devise/shared/error_messages", resource: resource %>
 
                 <div class="form-group">
-                    <%= f.label :email %><br />
+                    <small class="font-weight-bold"><%= f.label :email %></small>
+                    <br />
                     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter email", class: "form-control" %>
                 </div>
 

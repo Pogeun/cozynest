@@ -3,11 +3,11 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .contact-section {
-    padding: 10rem 0;
-}
+    margin: 10vh;
 
-.contact-form-container {
-    padding: 3rem;
-    display: flex;
-    align-items: center;
+    .contact-form-container {
+        padding: 3rem;
+        display: flex;
+        align-items: center;
+    }
 }

@@ -9,7 +9,7 @@
                 <%= render "devise/shared/error_messages", resource: resource %>
 
                 <div class="form-group">
-                    <%= f.label :email, "Email address" %>
+                    <small class="font-weight-bold"><%= f.label :email, "Email address" %></small>
                     <br />
                     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter email", class: "form-control" %>
                 </div>
@@ -19,13 +19,13 @@
                 <% end %>
 
                 <div class="form-group">
-                    <%= f.label :username %>
+                    <small class="font-weight-bold"><%= f.label :username %></small>
                     <br />
                     <%= f.text_field :username, autofocus: true, placeholder: "Username", class: "form-control" %>
                 </div>
 
                 <div class="form-group">
-                    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+                    <small class="font-weight-bold"><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></small>
                     <br />
                     <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "form-control" %>
                     <% if @minimum_password_length %>
@@ -34,13 +34,13 @@
                 </div>
 
                 <div class="form-group">
-                    <%= f.label :password_confirmation, "Repeat password" %>
+                    <small class="font-weight-bold"><%= f.label :password_confirmation, "Repeat password" %></small>
                     <br />
                     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password", class: "form-control" %>
                 </div>
 
                 <div class="form-group">
-                    <%= f.label :current_password %>
+                    <small class="font-weight-bold"><%= f.label :current_password %></small>
                     <br />
                     <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "Password", class: "form-control" %>
                 </div>

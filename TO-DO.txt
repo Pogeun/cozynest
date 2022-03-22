@@ -1,6 +1,6 @@
-Functionality
-
 CSS
+    * review foster request
+    * send foster request
 
 README
 
