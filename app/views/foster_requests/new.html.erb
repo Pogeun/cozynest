@@ -1,13 +1,25 @@
-<%= form_with url: new_foster_request_path, method: :post do |form| %>
-    <div>
-        <%= form.label :pet_name, "Pet name: #{@pet.name}" %>
+<section class="container foster-request-section">
+    <div class="d-flex shadow bg-white rounded foster-request-block">
+        <div class="w-50 foster-request-image-container">
+            <%= image_tag @pet.picture.attached? ? @pet.picture : 'cozynest_image_default.jpg', class: "w-100 h-auto foster-request-image" %>
+        </div>
+        <div class="w-50 foster-request-form-container">
+            <%= form_with url: new_foster_request_path, method: :post, html: {class: "w-100"} do |form| %>
+                <div class="pb-2">
+                    <small class="font-weight-bold">Name:</small>
+                    <br>
+                    <%= @pet.name %>
+                </div>
+                <div class="pb-2 flex-grow-1">
+                    <small class="font-weight-bold">Comment:</small>
+                    <br>
+                    <%= form.text_area :comment, rows: 4, cols: 40, class: "form-control" %>
+                </div>
+                <div class="pb-2">
+                    <%= form.button "Submit", data: {confirm: "Once you submit you will not be able to make modifications. Are you sure?"}, class: "btn btn-primary w-100" %>
+                </div>
+            <% end %>
+        </div>
     </div>
-    <div>
-        <%= form.label :comment %>
-        <%= form.text_area :comment %>
-    </div>
-    <div>
-        <%= form.button "Submit", data: {confirm: "Are you sure?"} %>
-    </div>
-<% end %>
+</section>
 <%= link_to "Back", @pet %>

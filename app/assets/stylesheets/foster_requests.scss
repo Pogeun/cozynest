@@ -1,3 +1,113 @@
 // Place all the styles related to the FosterRequests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.foster-request-section {
+    margin: 10vh;
+
+    .foster-request-image {
+        height: 100% !important;
+    }
+
+    .foster-request-form-container {
+        padding: 3rem;
+        display: flex;
+        align-items: center;
+    }
+
+    @media screen and (max-width: 767px) {
+        .foster-request-block {
+            flex-direction: column;
+        }
+    
+        .foster-request-image-container,
+        .foster-request-form-container {
+            width: 100% !important;
+        }
+    
+        .foster-request-image-container {
+            height: 10rem;
+        }
+    
+        .foster-request-image {
+            height: 100% !important;
+            object-fit: cover;
+        }
+    }
+}
+
+.requests-per-pet-section {
+    margin: 10vh;
+
+    .requests-per-pet-image {
+        height: 100% !important;
+    }
+
+    .requests-per-pet-details-container {
+        padding: 3rem;
+        display: flex;
+        align-items: center;
+    }
+
+    @media screen and (max-width: 767px) {
+        .requests-per-pet-block {
+            flex-direction: column;
+        }
+    
+        .requests-per-pet-image-container,
+        .requests-per-pet-details-container {
+            width: 100% !important;
+        }
+    
+        .requests-per-pet-image-container {
+            height: 10rem;
+        }
+
+        .requests-per-pet-details-container {
+            padding: 1rem;
+        }
+    
+        .requests-per-pet-image {
+            height: 100% !important;
+            object-fit: cover;
+        }
+    }
+}
+
+.foster-request-review-section {
+    margin: 10vh;
+
+    .foster-request-review-image {
+        height: 100% !important;
+    }
+
+    .foster-request-review-details-container {
+        padding: 3rem;
+        display: flex;
+        align-items: center;
+    }
+
+    @media screen and (max-width: 767px) {
+        .foster-request-review-block {
+            flex-direction: column;
+        }
+    
+        .foster-request-review-image-container,
+        .foster-request-review-details-container {
+            width: 100% !important;
+        }
+    
+        .foster-request-review-image-container {
+            height: 10rem;
+        }
+
+        .foster-request-review-details-container {
+            padding: 1rem;
+        }
+    
+        .foster-request-review-image {
+            height: 100% !important;
+            object-fit: cover;
+        }
+    }
+}

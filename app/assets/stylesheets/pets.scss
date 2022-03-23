@@ -83,4 +83,12 @@
             cursor: pointer;
         }
     }
+
+    a {
+        color: white !important;
+
+        &:hover {
+            color: aquamarine !important;
+        }
+    }
 }

@@ -1,12 +1,33 @@
-<% @foster_requests.each do |foster_request| %>
-    <div>
-        <%= foster_request.guardian.username %>
+<section class="container requests-per-pet-section">
+    <div class="d-flex shadow bg-white rounded requests-per-pet-block">
+        <div class="w-50 requests-per-pet-image-container">
+            <%= image_tag @pet.picture.attached? ? @pet.picture : 'cozynest_image_default.jpg', class: "w-100 h-auto requests-per-pet-image" %>
+        </div>
+        <div class="w-50 d-flex flex-column requests-per-pet-details-container">
+            <% @foster_requests.each do |foster_request| %>
+                <div class="mb-2 w-100 border shadow bg-white rounded">
+                    <div class="p-2 d-flex flex-column">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <small class="font-weight-bold">Name:</small>
+                                <br>
+                                <%= foster_request.guardian.username %>
+                            </div>
+                            <div>
+                                <small class="font-weight-bold">Date:</small>
+                                <br>
+                                <%= format_time(foster_request.created_at) %>
+                            </div>
+                        </div>
+                        <div class="align-self-end">
+                            <small>
+                                <%= link_to "Show details", show_foster_request_path(foster_request.id), class: "btn btn-primary w-100" %>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
-    <div>
-        <%= format_time(foster_request.created_at) %>
-    </div>
-    <div>
-        <%= link_to "Show Details", show_foster_request_path(foster_request.id) %>
-    </div>
-<% end %>
+</section>
 <%= link_to "Back", @pet %>
