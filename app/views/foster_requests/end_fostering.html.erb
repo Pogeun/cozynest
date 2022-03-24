@@ -1,13 +1,25 @@
-<%= form_with url: end_foster_request_path, method: :post do |form| %>
-    <div>
-        <%= form.label :pet_name, "Pet name: #{@pet.name}" %>
+<section class="container end-fostering-section">
+    <div class="d-flex shadow bg-white rounded end-fostering-block">
+        <div class="w-50 end-fostering-image-container">
+            <%= image_tag @pet.picture.attached? ? @pet.picture : 'cozynest_image_default.jpg', class: "w-100 h-auto end-fostering-image" %>
+        </div>
+        <div class="w-50 end-fostering-details-container">
+            <%= form_with url: end_foster_request_path, method: :post, html: {class: "w-100"} do |form| %>
+                <div class="pb-2">
+                    <small class="font-weight-bold">Name:</small>
+                    <br>
+                    <%= @pet.name %>
+                </div>
+                <div class="pb-2">
+                    <small class="font-weight-bold">Comment:</small>
+                    <br>
+                    <%= form.text_area :comment, rows: 8, cols: 40, required: true, class: "form-control" %>
+                </div>
+                <div>
+                    <%= form.button "Submit", data: {confirm: "Are you sure?"}, class: "btn btn-primary w-100" %>
+                </div>
+            <% end %>
+        </div>
     </div>
-    <div>
-        <%= form.label :comment %>
-        <%= form.text_area :comment %>
-    </div>
-    <div>
-        <%= form.button "Submit", data: {confirm: "Are you sure?"} %>
-    </div>
-<% end %>
-<%= link_to "Back", @pet %>
+    <%= link_to "Back", @pet %>
+</section>

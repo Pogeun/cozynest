@@ -1,6 +1,4 @@
-CSS
-    * review foster request
-    * send foster request
+Commenting codes
 
 README
 

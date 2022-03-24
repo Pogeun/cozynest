@@ -4,30 +4,36 @@
             <%= image_tag @pet.picture.attached? ? @pet.picture : 'cozynest_image_default.jpg', class: "w-100 h-auto requests-per-pet-image" %>
         </div>
         <div class="w-50 d-flex flex-column requests-per-pet-details-container">
-            <% @foster_requests.each do |foster_request| %>
-                <div class="mb-2 w-100 border shadow bg-white rounded">
-                    <div class="p-2 d-flex flex-column">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <small class="font-weight-bold">Name:</small>
-                                <br>
-                                <%= foster_request.guardian.username %>
+            <% if @foster_requests.count > 0 %>
+                <% @foster_requests.each do |foster_request| %>
+                    <div class="mb-2 w-100 border shadow bg-white rounded">
+                        <div class="p-2 d-flex flex-column">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <small class="font-weight-bold">Name:</small>
+                                    <br>
+                                    <%= foster_request.guardian.username %>
+                                </div>
+                                <div>
+                                    <small class="font-weight-bold">Date:</small>
+                                    <br>
+                                    <%= format_time(foster_request.created_at) %>
+                                </div>
                             </div>
-                            <div>
-                                <small class="font-weight-bold">Date:</small>
-                                <br>
-                                <%= format_time(foster_request.created_at) %>
+                            <div class="align-self-end">
+                                <small>
+                                    <%= link_to "Show details", show_foster_request_path(foster_request.id), class: "btn btn-primary w-100" %>
+                                </small>
                             </div>
-                        </div>
-                        <div class="align-self-end">
-                            <small>
-                                <%= link_to "Show details", show_foster_request_path(foster_request.id), class: "btn btn-primary w-100" %>
-                            </small>
                         </div>
                     </div>
+                <% end %>
+            <% else %>
+                <div class="mb-2 w-100 d-flex justify-content-center align-items-center flex-grow-1">
+                    <h3>No requests have been made yet!</h3>
                 </div>
             <% end %>
         </div>
     </div>
+    <%= link_to "Back", @pet %>
 </section>
-<%= link_to "Back", @pet %>
