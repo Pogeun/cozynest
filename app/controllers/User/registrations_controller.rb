@@ -4,8 +4,13 @@ class User::RegistrationsController < Devise::RegistrationsController
     before_action :configure_permitted_parameters
 
     protected
+        # a protected function that permits parameters passed
         def configure_permitted_parameters
+            # allow type and username on user sign up
             devise_parameter_sanitizer.permit(:sign_up, keys: [:type, :username])
+            # update username on account editing
+            # type is not needed as I wanted to separate guardian and shelter accounts
+            # instead of switching the user type, I wanted the users to create new account for each specific reasons
             devise_parameter_sanitizer.permit(:account_update, keys: [:username])
         end
 

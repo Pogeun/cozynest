@@ -1,6 +1,9 @@
 <section class="container foster-request-review-section">
     <div class="d-flex shadow bg-white rounded foster-request-review-block">
         <div class="w-50 foster-request-review-image-container">
+            <%# check if the retrieved foster request's pet has its picture attached %>
+            <%# if it does, display that image %>
+            <%# otherwise display the default image %>
             <%= image_tag @foster_request.pet.picture.attached? ? @foster_request.pet.picture : 'cozynest_image_default.jpg', class: "w-100 h-auto foster-request-review-image" %>
         </div>
         <div class="w-50 foster-request-review-details-container">
@@ -15,6 +18,7 @@
                     <br>
                     <%= @foster_request.comment %>
                 </div>
+                <%# render the accept button only if the pet of the foster request that is being reviewed does not have guardian %>
                 <% if not @foster_request.pet.guardian %>
                     <div class="pb-2">
                         <%= form.button "Accept", data: {confirm: "Are you sure?"}, class: "btn btn-primary w-100" %>

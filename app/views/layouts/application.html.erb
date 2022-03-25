@@ -15,14 +15,17 @@
     </head>
 
     <body class="bottom-footer disable-selection">
+        <%# render alert message box %>
         <% flash.each do |key, value| %>
             <div class="alert alert-<%= select_alert_subclass(key) %> alert-dismissable fade show" role="alert">
                 <%= value %>
                 <button type="button" class="close" data-dismiss="alert" aira-label="close"><span aria-hidden="true">&times;</span></button>
             </div>
         <% end %>
+        <%# render nav bar %>
         <%= render 'shared/navbar' %>
         <%= yield %>
+        <%# render footer %>
         <%= render 'shared/footer' %>
     </body>
 </html>

@@ -1,9 +1,11 @@
+<%# a form that is shared via new and edit page %>
 <div class="d-flex shadow bg-white rounded pet-manage-block">
     <div class="w-50 pet-manage-image-container">
         <%= image_tag "cozynest_pet_manage.jpg", class: "w-100 h-auto pet-manage-image" %>
     </div>
     <div class="w-50 pet-manage-form-container">
         <%= form_with model: @pet, local: true, html: {class: "w-100"} do |form| %>
+            <%# print all errors %>
             <% if @pet.errors.any? %>
                 <div>
                     <h2>
@@ -26,6 +28,7 @@
             <div class="form-group">
                 <small class="font-weight-bold"><%= form.label :category_id %></small>
                 <br />
+                <%# fill the dropdown menu with the category values retrieved %>
                 <%= form.select :category_id, @categories.map {|category| [format_category(category.name), category.id]}, {}, {class: "form-control form-select"} %>
             </div>
             <div class="form-group">

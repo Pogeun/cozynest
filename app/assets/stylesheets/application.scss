@@ -14,9 +14,11 @@
  *= require_self
  */
 
+// load bootstrap
 @import "bootstrap/scss/bootstrap";
 
 body {
+    // override the default bootstrap font
     font-family: 'Roboto', sans-serif !important;
 
     // to place the footer at the bottom of the page
@@ -43,7 +45,7 @@ body {
     margin-top: 0; // remove the gap so it doesn't close
 }
 
- 
+// generic anchor tag styling
 a {
     color: grey;
     text-decoration: none;

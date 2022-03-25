@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+/*
+This scss file specifies the styling for foster related pages.
+At first I thought I should be merging all the similar parts instead of separating them,
+but wanted to isolate each section for safety reasons like editing a single value causing the other pages disaster
+*/
+
 .foster-request-section {
     margin: 10vh;
 

@@ -1,6 +1,7 @@
 <section class="container contact-section">
     <h2 class="d-flex justify-content-center">Contact Form</h2>
     <div class="contact-form-container">
+        <%# create a contact form %>
         <%= form_for @contact, html: {class: "w-100"} do |form| %>
             <div class="form-group">
                 <small class="font-weight-bold"><%= form.label :name %></small>
@@ -20,6 +21,7 @@
                 <%= form.text_area :message, rows: 8, cols: 40, required: true, class: "form-control" %>
             </div>
 
+            <%# nickname field is left hidden as this is only to trick the Bot %>
             <div class= "d-none">
                 <small class="font-weight-bold"><%= form.label :nickname %></small>
                 <%= form.text_field :nickname, :hint => "Leave this field blank!" %>

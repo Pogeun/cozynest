@@ -1,6 +1,9 @@
 <section class="container end-fostering-section">
     <div class="d-flex shadow bg-white rounded end-fostering-block">
         <div class="w-50 end-fostering-image-container">
+            <%# check if the retrieved pet has its picture attached %>
+            <%# if it does, display that image %>
+            <%# otherwise display the default image %>
             <%= image_tag @pet.picture.attached? ? @pet.picture : 'cozynest_image_default.jpg', class: "w-100 h-auto end-fostering-image" %>
         </div>
         <div class="w-50 end-fostering-details-container">
@@ -16,6 +19,7 @@
                     <%= form.text_area :comment, rows: 8, cols: 40, required: true, class: "form-control" %>
                 </div>
                 <div>
+                    <%# double check if the user really wants to terminate foster %>
                     <%= form.button "Submit", data: {confirm: "Are you sure?"}, class: "btn btn-primary w-100" %>
                 </div>
             <% end %>

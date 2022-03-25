@@ -1,9 +1,13 @@
 <section class="container requests-per-pet-section">
     <div class="d-flex shadow bg-white rounded requests-per-pet-block">
         <div class="w-50 requests-per-pet-image-container">
+            <%# check if the retrieved pet has its picture attached %>
+            <%# if it does, display that image %>
+            <%# otherwise display the default image %>
             <%= image_tag @pet.picture.attached? ? @pet.picture : 'cozynest_image_default.jpg', class: "w-100 h-auto requests-per-pet-image" %>
         </div>
         <div class="w-50 d-flex flex-column requests-per-pet-details-container">
+            <%# only render foster requests if they really exist %>
             <% if @foster_requests.count > 0 %>
                 <% @foster_requests.each do |foster_request| %>
                     <div class="mb-2 w-100 border shadow bg-white rounded">
@@ -22,12 +26,14 @@
                             </div>
                             <div class="align-self-end">
                                 <small>
+                                    <%# link to each request detail's page %>
                                     <%= link_to "Show details", show_foster_request_path(foster_request.id), class: "btn btn-primary w-100" %>
                                 </small>
                             </div>
                         </div>
                     </div>
                 <% end %>
+            <%# if there are no foster requests, yet, just print plain text %>
             <% else %>
                 <div class="mb-2 w-100 d-flex justify-content-center align-items-center flex-grow-1">
                     <h3>No requests have been made yet!</h3>

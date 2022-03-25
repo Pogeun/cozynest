@@ -1,6 +1,9 @@
 <section class="container pet-show-section">
     <div class="d-flex shadow bg-white rounded pet-show-block">
         <div class="w-50 pet-show-image-container">
+            <%# check if the retrieved pet has its picture attached %>
+            <%# if it does, display that image %>
+            <%# otherwise display the default image %>
             <%= image_tag @pet.picture.attached? ? @pet.picture : 'cozynest_image_default.jpg', class: "w-100 h-auto pet-show-image", alt: @pet.name %>
         </div>
         <div class="w-50 pet-show-details-container">
@@ -36,28 +39,38 @@
                 <% end %>
             </div>
             <% if current_user %>
+                <%# if the current user is a shelter representative and is the pet's shelter manager %>
                 <% if current_user.shelter? && current_user == @pet.shelter %>
                     <div class="d-flex justify-content-end pb-1">
+                        <%# if the pet is still not fostered %>
                         <% if not @pet.guardian %>
                             <div class="pr-1">
+                                <%# put the review request button %>
                                 <%= link_to "Review requests", foster_requests_per_pet_path(@pet.id), class: "btn btn-primary" %>
                             </div>
                         <% end %>
                         <div class=<%= "pr-1" if not @pet.guardian %>>
                             <%= link_to "Edit", edit_pet_path(@pet.id), class: "btn btn-warning" %>
                         </div>
+                        <%# if the pet is still not fostered %>
                         <% if not @pet.guardian %>
                             <div>
+                                <%# put the delete pet button %>
                                 <%= link_to "Delete", @pet, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
                             </div>
                         <% end %>
                     </div>
+                <%# if the current user is a guardian %>
                 <% elsif current_user.guardian? %>
                     <div>
+                        <%# if the pet is not fostered yet %>
                         <% if not @pet.guardian %>
+                            <%# put the foster button %>
                             <%= link_to "Foster", new_foster_request_path(@pet.id), class: "btn btn-primary w-100" %>
+                        <%# if the current user is a guardian of the pet %>
                         <% elsif current_user == @pet.guardian %>
-                            <%= link_to "End Fostering", end_foster_request_path(@pet.id), class: "btn btn-danger w-100" %>
+                            <%# put the end fostering button %>
+                            <%= link_to "End fostering", end_foster_request_path(@pet.id), class: "btn btn-danger w-100" %>
                         <% end %>
                     </div>
                 <% end %>
@@ -67,6 +80,7 @@
     <br>
     <div class="p-3 shadow bg-white rounded d-flex flex-column">
         <small class="mb-2 font-weight-bold">Comments:</small>
+        <%# render all the existing comments for the pet %>
         <% if @pet.reviews.count > 0 %>
             <% @pet.reviews.each do |review| %>
                 <div>

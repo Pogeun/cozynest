@@ -14,6 +14,8 @@
                     <%= form.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter email", class: "form-control" %>
                 </div>
 
+                <%# updated the registration form so that it now contains user type field %>
+                <%# user can choose their type from either guardian and shelter %>
                 <div class="form-group">
                     <small class="font-weight-bold"><%= form.label :type, "User type" %></small>
                     <br />
@@ -27,6 +29,7 @@
                     </div>
                 </div>
 
+                <%# updated the registration form so that it now contains username field %>
                 <div class="form-group">
                     <small class="font-weight-bold"><%= form.label :username %></small>
                     <br />

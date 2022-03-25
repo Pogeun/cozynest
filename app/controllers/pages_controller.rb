@@ -1,10 +1,12 @@
 class PagesController < ApplicationController
+    # to disable authenticity token verification process for web hook
     skip_before_action :verify_authenticity_token, only: [:webhook]
 
     def index
     end
 
     def donation
+        # donation sessions for stripe
         @donation_sessions = {}
         [500, 1000, 1500, 2000].each do |value|
             donation_session = Stripe::Checkout::Session.create(
@@ -22,6 +24,7 @@ class PagesController < ApplicationController
                 cancel_url: generate_url_for_path(donation_path)
             )
     
+            # store all sessions into an array
             @donation_sessions[value] = donation_session
         end
     end

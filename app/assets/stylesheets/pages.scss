@@ -3,11 +3,13 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .index-section,
-.donation-section {
+.donation-section,
+.about-section {
     margin: 10vh;
 
     .index-details-container,
-    .donation-details-container {
+    .donation-details-container,
+    .about-details-container {
         padding: 3rem;
         display: flex;
         flex-direction: column;
@@ -26,26 +28,35 @@
         }
     }
 
+    .about-icon {
+        max-width: 40px;
+    }
+
     @media screen and (max-width: 767px) {
-        .index-block
-        .donation-block {
+        .index-block,
+        .donation-block,
+        .about-block {
             flex-direction: column;
         }
     
         .index-image-container,
         .index-details-container,
         .donation-image-container,
-        .donation-details-container {
+        .donation-details-container,
+        .about-image-container,
+        .about-details-container {
             width: 100% !important;
         }
     
         .index-image-container,
-        .donation-image-container {
+        .donation-image-container,
+        .about-image-container {
             height: 10rem;
         }
     
         .index-image,
-        .donation-image {
+        .donation-image,
+        .about-image {
             height: 100% !important;
             object-fit: cover;
         }
