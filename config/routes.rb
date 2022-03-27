@@ -1,3 +1,37 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+    devise_for :users, :controllers => {:registrations => "user/registrations"}
+
+    root to: 'pages#index'
+
+    # Pages
+    get '/donation', to: 'pages#donation', as: 'donation'
+    post '/webhook', to: 'pages#webhook'
+    get '/about', to: 'pages#about', as: 'about'
+
+    # Pets
+    get '/pets', to: 'pets#index', as: 'pets'
+    get '/pets/new', to: 'pets#new', as: 'new_pet'
+    post '/pets', to: 'pets#create'
+    get '/pets/user_pets', to: 'pets#index_user_pets', as: 'user_pets'
+    get '/pets/:id', to: 'pets#show', as: 'pet'
+    put '/pets/:id', to: 'pets#update'
+    patch '/pets/:id', to: 'pets#update'
+    delete '/pets/:id', to: 'pets#destroy', as: 'delete_pet'
+    get '/pets/:id/edit', to: 'pets#edit', as: 'edit_pet'
+    
+    # Foster Requests
+    # get '/pets/:id', to: 'pets#show', as: 'foster_requests'
+    get '/pets/:id/new_foster_request', to: 'foster_requests#new', as: 'new_foster_request'
+    post '/pets/:id/new_foster_request', to: 'foster_requests#create'
+    get '/pets/:id/end_foster_request', to: 'foster_requests#end_fostering', as: 'end_foster_request'
+    post '/pets/:id/end_foster_request', to: 'foster_requests#terminate'
+    get '/pets/:id/foster_requests', to: 'foster_requests#show_per_pet', as: 'foster_requests_per_pet'
+    get '/foster_requests', to: 'foster_requests#index', as: 'foster_requests'
+    get '/foster_requests/:id', to: 'foster_requests#show', as: 'show_foster_request'
+    put '/foster_requests/:id', to: 'foster_requests#approve'
+    patch '/foster_requests/:id', to: 'foster_requests#approve', as: 'approve_foster_request'
+
+    # Contact
+    get '/contacts', to: 'contacts#new', as: 'new_contact'
+    post '/contacts', to: 'contacts#create'
 end

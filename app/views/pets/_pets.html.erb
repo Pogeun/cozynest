@@ -1,0 +1,36 @@
+<%# a simple card that is shared via pet's index page as well as the user specific pets page %>
+<div class="container">
+    <div class="row">
+        <% pets.each do |pet| %>
+            <div class="col-md-4">
+                <div class="card click-col bg-cover text-white pets-card pets-card-bg" style="background-image: url(<%= pet.picture.attached? ? pet.picture.url : image_url('cozynest_image_default.jpg') %>);">
+                    <div class="card-img-overlay d-flex flex-column">
+                        <div class="card-body">
+                            <small class="pets-card-category mb-2">
+                                <%= format_category(pet.category.name) %>
+                            </small>
+                            <h4 class="card-title mt-0">
+                                <%= link_to pet.name, pet_path(pet.id) %>
+                            </h4>
+                            <small>
+                                <%= format_time(pet.created_at) %>
+                            </small>
+                        </div>
+                        <div class="card-footer pets-card-footer">
+                            <div class="media">
+                                <div class="media-body">
+                                    <h6 class="my-0 text-white d-block">
+                                        <%= pet.shelter.username %>
+                                    </h6>
+                                    <small>
+                                        <%= pet.shelter.email %>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

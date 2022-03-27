@@ -1,0 +1,58 @@
+<%# a form that is shared via new and edit page %>
+<div class="d-flex shadow bg-white rounded pet-manage-block">
+    <div class="w-50 pet-manage-image-container">
+        <%= image_tag "cozynest_pet_manage.jpg", class: "w-100 h-auto pet-manage-image" %>
+    </div>
+    <div class="w-50 pet-manage-form-container">
+        <%= form_with model: @pet, local: true, html: {class: "w-100"} do |form| %>
+            <%# print all errors %>
+            <% if @pet.errors.any? %>
+                <div>
+                    <h2>
+                        <%= pluralize(@pet.errors.count, "error") %> prohibited this pet from being saved:
+                    </h2>
+                    <ul>
+                        <% @pet.errors.each do |error| %>
+                            <li>
+                                <%= error.full_message %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+            <div class="form-group">
+                <small class="font-weight-bold"><%= form.label :name %></small>
+                <br />
+                <%= form.text_field :name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+                <small class="font-weight-bold"><%= form.label :category_id %></small>
+                <br />
+                <%# fill the dropdown menu with the category values retrieved %>
+                <%= form.select :category_id, @categories.map {|category| [format_category(category.name), category.id]}, {}, {class: "form-control form-select"} %>
+            </div>
+            <div class="form-group">
+                <small class="font-weight-bold"><%= form.label :description %></small>
+                <br />
+                <%= form.text_area :description, rows: 4, cols: 40, class: "form-control" %>
+            </div>
+            <div class="form-group">
+                <small class="font-weight-bold"><%= form.label :picture %></small>
+                <br />
+                <%= form.file_field :picture, accept: "image/png, image/jpg, image/jpeg" %>
+            </div>
+            <br />
+            <div class="form-group">
+                <%= form.submit class: "btn btn-primary w-100" %>
+            </div>
+            
+            <div>
+                <% if current_page?(:controller => 'pets', :action => 'new') %>
+                    <%= link_to "Back", root_url, style: "color: black; text-decoration: none;" %>
+                <% elsif current_page?(:controller => 'pets', :action => 'edit') %>
+                    <%= link_to "Back", pet_path(@pet.id), style: "color: black; text-decoration: none;" %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+</div>

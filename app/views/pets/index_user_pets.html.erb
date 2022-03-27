@@ -1,0 +1,6 @@
+<section class="pets-section">
+    <h2 class="d-flex justify-content-center">
+        <%= current_user.username%>'s Pet List
+    </h2>
+    <%= render 'pets', pets: current_user.pets %>
+</section>

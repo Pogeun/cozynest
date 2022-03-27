@@ -1,0 +1,35 @@
+<section class="container about-section">
+    <h2 class="d-flex justify-content-center">
+        About us
+    </h2>
+    <div class="d-flex shadow bg-white rounded index-block">
+        <div class="w-50 about-image-container">
+            <%= image_tag"cozynest_index.jpg", class: "w-100 h-auto about-image" %>
+        </div>
+        <div class="w-50 about-details-container">
+            <p>
+                We are Cozynest!
+            </p>
+            <p>
+                Our goal is to minimize unwanted death of strayed pets.
+            </p>
+            <p>
+                If any inquries, please don't hesitate to contact us via following contact details.
+            </p>
+            <p>
+                <small class="font-weight-bold">Phone:</small>
+                <br>
+                (+61) 000 000 000
+                <br>
+                <small class="font-weight-bold">Email:</small>
+                <br>
+                <%= link_to "gcam022110@coderacademy.edu.au", "mailto:gcam022110@coderacademy.edu.au" %>
+            </p>
+            <p class="d-flex justify-content-around">
+                <%= link_to image_tag("facebook-icon.png", class: "about-icon"), "https://www.facebook.com/" %>
+                <%= link_to image_tag("instagram-icon.png", class: "about-icon"), "https://www.instagram.com/" %>
+                <%= link_to image_tag("twitter-icon.png", class: "about-icon"), "https://twitter.com/" %>
+            </p>
+        </div>
+    </div>
+</section>

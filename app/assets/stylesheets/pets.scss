@@ -1,0 +1,94 @@
+// Place all the styles related to the Pets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.pet-manage-section,
+.pet-show-section {
+    margin: 10vh;
+
+    .pet-show-image {
+        height: 100% !important;
+    }
+
+    .pet-manage-form-container {
+        padding: 3rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .pet-show-details-container {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    @media screen and (max-width: 767px) {
+        .pet-manage-block,
+        .pet-show-block {
+            flex-direction: column;
+        }
+    
+        .pet-manage-image-container,
+        .pet-manage-form-container,
+        .pet-show-image-container,
+        .pet-show-details-container {
+            width: 100% !important;
+        }
+    
+        .pet-manage-image-container,
+        .pet-show-image-container {
+            height: 10rem;
+        }
+    
+        .pet-manage-image,
+        .pet-show-image {
+            height: 100% !important;
+            object-fit: cover;
+        }
+    }
+}
+
+.pets-section {
+    margin: 10vh;
+
+    .pets-card {
+        border: none;
+        overflow: hidden;
+        border-radius: 20px;
+        min-height: 450px;
+        box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
+        
+        &.pets-card-bg {
+            transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+            background-repeat: no-repeat;
+            background-position: center center;
+    
+            &:hover {
+                transform: scale(0.98);
+                box-shadow: 0 0 5px -5px rgba(0, 0, 0, 1);
+                transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+            }
+        }
+    
+        .pets-card-category {
+            color: khaki;
+        }
+    
+        .pets-card-footer {
+            background: none;
+            border-top: none;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    a {
+        color: white !important;
+
+        &:hover {
+            color: aquamarine !important;
+        }
+    }
+}

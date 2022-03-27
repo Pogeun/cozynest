@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Cozynest</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+        
+        <title>Cozynest</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-  <body>
-    <%= yield %>
-  </body>
+    <body class="bottom-footer disable-selection">
+        <%# render alert message box %>
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= select_alert_subclass(key) %> alert-dismissable fade show" role="alert">
+                <%= value %>
+                <button type="button" class="close" data-dismiss="alert" aira-label="close"><span aria-hidden="true">&times;</span></button>
+            </div>
+        <% end %>
+        <%# render nav bar %>
+        <%= render 'shared/navbar' %>
+        <%= yield %>
+        <%# render footer %>
+        <%= render 'shared/footer' %>
+    </body>
 </html>

@@ -1,0 +1,30 @@
+// generic styling for devise pages
+.devise-section {
+    margin: 10vh;
+
+    .devise-form-container {
+        padding: 3rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    @media screen and (max-width: 767px) {
+        .devise-block {
+            flex-direction: column;
+        }
+    
+        .devise-image-container,
+        .devise-form-container {
+            width: 100% !important;
+        }
+    
+        .devise-image-container {
+            height: 10rem;
+        }
+    
+        .devise-image {
+            height: 100% !important;
+            object-fit: cover;
+        }
+    }
+}

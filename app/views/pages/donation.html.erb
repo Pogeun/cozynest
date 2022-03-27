@@ -1,0 +1,72 @@
+<section class="container donation-section">
+    <h2 class="text-center">Donations</h2>
+    <div class="d-flex shadow bg-white rounded donation-block">
+        <div class="w-50 donation-image-container">
+            <%= image_tag 'cozynest_donation.jpg', class: "w-100 h-auto donation-image" %>
+        </div>
+        <div class="w-50 donation-details-container">
+            <p class="text-justify donation-paragraph">
+                When I first came up with the idea of Cozynest, I did not want any types of direct payment to be included nor permit the monetary transaction between the shelter and the guardian, and my opinion is still firm and solid.
+            </p>
+            <p class="text-justify donation-paragraph">
+                However, it is also inevitable that we need a budget to maintain the services and run the server. That is why I came up with the donation system.
+            </p>
+            <p class="text-justify donation-paragraph">
+                If you could buy us some coffee, it would be much appreciated!
+            </p>
+            <div class="d-flex flex-column align-items-center">
+                <%# create button for each donation values %>
+                <% [5, 10, 15, 20].each do |price| %>
+                    <div class="donation-button w-100">
+                        <button class="btn btn-primary" name="button" type="button" method="POST" data-stripe="donation-<%= price %>00">$<%= price %>.00</button>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    // tried to achieve this with for-loop instead of the hard coding, 
+    // but for some reason it is only generating a $20.00 session for every buttons
+    document
+        .querySelector("[data-stripe='donation-500']")
+        .addEventListener("click", () => {
+            const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+            console.log(stripe);
+            stripe.redirectToCheckout({
+                sessionId: "<%= @donation_sessions[500].id %>"
+            });
+        });
+
+    document
+        .querySelector("[data-stripe='donation-1000']")
+        .addEventListener("click", () => {
+            const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+            console.log(stripe);
+            stripe.redirectToCheckout({
+                sessionId: "<%= @donation_sessions[1000].id %>"
+            });
+        });
+
+    document
+        .querySelector("[data-stripe='donation-1500']")
+        .addEventListener("click", () => {
+            const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+            console.log(stripe);
+            stripe.redirectToCheckout({
+                sessionId: "<%= @donation_sessions[1500].id %>"
+            });
+        });
+
+    document
+        .querySelector("[data-stripe='donation-2000']")
+        .addEventListener("click", () => {
+            const stripe = Stripe("<%= Rails.application.credentials.dig(:stripe, :public_key) %>");
+            console.log(stripe);
+            stripe.redirectToCheckout({
+                sessionId: "<%= @donation_sessions[2000].id %>"
+            });
+        });
+</script>

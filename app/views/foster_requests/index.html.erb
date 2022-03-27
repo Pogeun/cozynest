@@ -1,0 +1,14 @@
+<% current_user.pets.each do |pet| %>
+    <% if pet.foster_requests.count > 0 %>
+        <h1>
+            <%= link_to pet.name, foster_requests_per_pet(pet.id) %>
+        </h1>
+        <% pet.foster_requests.each do |foster_request| %>
+            <div>
+                <div>
+                    <%= foster_request.guardian.username %>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+<% end %>

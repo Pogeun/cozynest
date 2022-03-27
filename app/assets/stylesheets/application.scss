@@ -1,0 +1,57 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+// load bootstrap
+@import "bootstrap/scss/bootstrap";
+
+body {
+    // override the default bootstrap font
+    font-family: 'Roboto', sans-serif !important;
+
+    // to place the footer at the bottom of the page
+    &.bottom-footer {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    >footer {
+        margin-top: auto;
+        background-color: #343a40;
+
+        >hr {
+            border: 0;
+            border-top: 1px solid grey;
+        }
+    }
+}
+
+// mouseover dropdown menu
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+}
+
+// generic anchor tag styling
+a {
+    color: grey;
+    text-decoration: none;
+
+    &:hover {
+        color: aquamarine;
+        text-decoration: none;
+    }
+}
