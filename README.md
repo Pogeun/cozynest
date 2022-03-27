@@ -357,7 +357,7 @@ Contact</center>
 
 ### **R14. Entity Relationship Diagram**
 
-<center><img src="./app/assets/images/readme/Entity Relationship Diagram.png" style="width: 700px;" alt="entity relationship diagram">
+<center><img src="./app/assets/images/readme/Cozynest%20ERD.png" style="width: 700px;" alt="entity relationship diagram">
 
 Entity Relationship Diagram (ERD)</center>
 
@@ -365,25 +365,195 @@ Entity Relationship Diagram (ERD)</center>
 
 ### **R15. Explain the different high-level components (abstractions) in your app**
 
+- **User (signup, signin, edit and delete)**
+
+Each potential users can signup, signin, edit and delete their account. During the registration, the users can choose their user type, either Shelter and Guardian. This type cannot be updated and thus if the one wants to create Guardian account alongside Shelter account, they will have to create another account with new authentication details.
+
+- **Pet (register & edit pet, show all existing pets and show details of specific pet)**
+
+Only shelter users can register the new pet or edit their exiting pets' details. However, viewing the pet details as well as viewing the entire lists of existing pets do not require user to be signed in.
+
+Please refer to Foster requests section for the further details.
+
+- **Foster requests (submit new foster request, review existing foster requests, approve the foster request and terminating the **foster)
+
+Only guardian users can submit a foster request regarding the pet. If the pet is not yet fostered, every single guardian users can submit a single request per pet which cannot be edited. This will then be reviewed by the shelter users where he/she can approve one's foster request.
+
+Once the guardian has been chosen, the shelter users cannot delete the pet from the database while the guardian users can no longer submit a foster requests.
+
+If the current user is the guardian of the pet, they can submit a foster termination. Once the process has been terminated and the pet is still on database, meaning that the pet is not yet adopted, the guardian users can submit foster requests again.
+
+- **Leaving the comment of the pet when terminating the foster**
+
+When the guardian users submit the foster termination request, they can leave a comment regarding the pet.
+
+- **Submitting a contact form**
+
+Any users can submit an inquiry to Cozynest with their name, email and comment.
+
+- **Donation**
+
+Any users can donate to Cozynest between 5, 10, 15 and 20 Australian dollars.
+
 <br>
 
 ### **R16. Detail any third party services that your app will use**
+
+- **Heroku**
+
+Heroku is utilized to deploy the application for both staging and production application. Each application has two addons PostgreSQL and Mailgun where PostgreSQL is a free and open-source relational database management system emphasizing extensibility and SQL compliance.
+
+- **AWS S3 & IAM**
+
+AWS, Amazon Web Services, is utilized to be an active storage of the application which is used to store user uploaded pet image files.
+
+- **Mailgun**
+
+As it was stated above, each application has a Mailgun addon added to manage contact form and handle any user submitted contact which will be re-directed to registered email.
 
 <br>
 
 ### **R17. Describe your projects models in terms of the relationships (active record associations) they have with each other**
 
+- **Shelters (Users) - Pets**
+
+Shelters can have zero to many Pets.
+<br>
+Pets can only belong to one Shelter.
+
+- **Guardians (Users) - Pets**
+
+Guardians can have zero to many Pets.
+<br>
+Pets can only belong to one Guardian.
+
+- **Guardians (Users) - Foster_Requests**
+
+Guardians can have zero to many Foster_Requests.
+<br>
+Foster_Requests can only belong to one Guardian.
+
+- **Pets - Foster_Requests**
+
+Pets can have zero to many Foster_Requests.
+<br>
+Foster_Requests can only belong to one Pet.
+
+- **Pet_Categories - Pets**
+
+Pet_Categories can have zero to many Pets.
+<br>
+Pets can only belong to one Pet_Category.
+
+- **Pets - Pictures (Active_Storages)**
+
+Pets can have zero to one Picture.
+<br>
+Pictures can only belong to one Pet.
+
+- **Pets - Reviews**
+
+Pets can have zero to many Reviews.
+<br>
+Reviews can only belong to one Pet.
+
+- **Reviews - Reviewers (Users)**
+
+Reviews can only have one Reviewer.
+<br>
+Reviewers can belong to zero to many Reviews. 
+
 <br>
 
 ### **R18. Discuss the database relations to be implemented in your application**
+
+- **Users**
+
+id: integer
+<br>
+email: string
+<br>
+type: string
+<br>
+username: string
+<br>
+password: string
+
+- **Shelters (single table inheritance from Users table)**
+
+pets: references
+
+- **Guardians (single table inheritance from Users table)**
+
+pets: references
+
+- **Pet_Categories**
+
+id: integer
+<br>
+name: string
+
+- **Pets**
+
+id: integer
+<br>
+name: string
+<br>
+category_id: references
+<br>
+description: text
+<br>
+picture_id: references
+<br>
+shelter_id: references
+<br>
+guardian_id: references
+
+- **Active_Storages**
+
+id: integer
+<br>
+picture: attachment
+
+- **Foster_Requests**
+
+id: integer
+<br>
+guardian_id: references
+<br>
+pet_id: references
+<br>
+comment: text
+<br>
+status: integer
+
+- **Reviews**
+
+reviewer_id: references
+<br>
+comment: text
+<br>
+reviewable_id: integer
+<br>
+reviewable_type: string
 
 <br>
 
 ### **R19. Provide your database schema design**
 
+<center><img src="./app/assets/images/readme/Cozynest%20Schema%20Design.png" style="width: 700px;" alt="schema design">
+
+Schema Design</center>
+
 <br>
 
 ### **R20. Describe the way tasks are allocated and tracked in your project**
+
+https://trello.com/b/syuHWUKP/cozynest
+
+<center><img src="./app/assets/images/readme/Trello.png" style="width: 700px;" alt="trello">
+
+Trello</center>
 
 <br>
 
@@ -391,6 +561,6 @@ Entity Relationship Diagram (ERD)</center>
 
 ### **R21. An outline of the problem you were trying to solve by building this particular marketplace app, and why it’s a problem that needs solving**
 
-<br>
-
 ### **R22. A walkthrough of your app**
+
+Please refer to the slide deck attached to the assignment submission!
